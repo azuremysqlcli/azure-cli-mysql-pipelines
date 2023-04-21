@@ -22,25 +22,25 @@ jobs:
       SecretsFilter: azure-cli-rdbms-regression-secret
   - bash: |
       az login --service-principal -u $(APPID) -p $(azure-cli-rdbms-regression-secret) --tenant $(TENANTID)
-      az account show
+      az account set -s $(SUBSCRIPTIONID)
     displayName: 'az login'
-  # - bash: |
-  #     git clone https://github.com/Azure/azure-cli.git
-  #     git branch
-  #   displayName: 'git clone azure-cli'
-  # - bash: |
-  #     set -ev
-  #     python -m venv env
-  #     chmod +x env/bin/activate
-  #     . env/bin/activate
-  #     python -m pip install -U pip
-  #     pip install azdev
-  #     azdev --version
-  #     azdev setup -c azure-cli --debug
-  #   displayName: 'azdev setup'
-  # - bash: |
-  #     set -ev
-  #     . env/bin/activate
-  #     azdev test --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
+  - bash: |
+      git clone https://github.com/Azure/azure-cli.git
+      git branch
+    displayName: 'git clone azure-cli'
+  - bash: |
+      set -ev
+      python -m venv env
+      chmod +x env/bin/activate
+      . env/bin/activate
+      python -m pip install -U pip
+      pip install azdev
+      azdev --version
+      azdev setup -c azure-cli --debug
+    displayName: 'azdev setup'
+  - bash: |
+      set -ev
+      . env/bin/activate
+      azdev test --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
 
-  #   displayName: 'azdev test rdbms'
+    displayName: 'azdev test rdbms'
