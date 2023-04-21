@@ -19,10 +19,11 @@ jobs:
     inputs:
       azureSubscription: 'MySQL aaS'
       KeyVaultName: 'meru-mysql-cicd-kv'
-      SecretsFilter: merucirptoaadapp
+      SecretsFilter: azure-cli-rdbms-regression-secret
   - bash: |
-      echo ${merucirptoaadapp}
-    displayName: 'debug keyvauly'
+      az login --service-principal -u $(APPID) -p $(azure-cli-rdbms-regression-secret) --tenant $(TENANTID)
+      az account show
+    displayName: 'az login'
   # - bash: |
   #     git clone https://github.com/Azure/azure-cli.git
   #     git branch
