@@ -17,8 +17,6 @@ jobs:
   - bash: |
       git clone https://github.com/Azure/azure-cli.git
       git branch
-      cd azure-cli
-      pwd
     displayName: 'git clone azure-cli'
   - bash: |
       set -ev
@@ -33,6 +31,6 @@ jobs:
   - bash: |
       set -ev
       . env/bin/activate
-      azdev test --live --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
+      azdev test --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
 
     displayName: 'azdev test rdbms'
