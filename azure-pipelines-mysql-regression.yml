@@ -18,7 +18,8 @@ jobs:
       git clone https://github.com/Azure/azure-cli.git
       git branch
       cd azure-cli
-    displayName: 'git clone azurecli'
+      pwd
+    displayName: 'git clone azure-cli'
   - bash: |
       set -ev
       python -m venv env
@@ -27,7 +28,7 @@ jobs:
       python -m pip install -U pip
       pip install azdev
       azdev --version
-      azdev setup . --debug
+      azdev setup -c . --debug
     displayName: 'azdev setup'
   - bash: |
       set -ev
