@@ -14,23 +14,32 @@ jobs:
     displayName: 'Use Python 3.10'
     inputs:
       versionSpec: 3.10
+  - task: AzureKeyVault@2
+    displayName: 'Azure Key Vault: meru-mysql-cicd-kv'
+    inputs:
+      azureSubscription: 'MySQL aaS'
+      KeyVaultName: 'meru-mysql-cicd-kv'
+      SecretsFilter: merucirptoaadapp
   - bash: |
-      git clone https://github.com/Azure/azure-cli.git
-      git branch
-    displayName: 'git clone azure-cli'
-  - bash: |
-      set -ev
-      python -m venv env
-      chmod +x env/bin/activate
-      . env/bin/activate
-      python -m pip install -U pip
-      pip install azdev
-      azdev --version
-      azdev setup -c azure-cli --debug
-    displayName: 'azdev setup'
-  - bash: |
-      set -ev
-      . env/bin/activate
-      azdev test --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
+      echo ${merucirptoaadapp}
+    displayName: 'debug keyvauly'
+  # - bash: |
+  #     git clone https://github.com/Azure/azure-cli.git
+  #     git branch
+  #   displayName: 'git clone azure-cli'
+  # - bash: |
+  #     set -ev
+  #     python -m venv env
+  #     chmod +x env/bin/activate
+  #     . env/bin/activate
+  #     python -m pip install -U pip
+  #     pip install azdev
+  #     azdev --version
+  #     azdev setup -c azure-cli --debug
+  #   displayName: 'azdev setup'
+  # - bash: |
+  #     set -ev
+  #     . env/bin/activate
+  #     azdev test --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
 
-    displayName: 'azdev test rdbms'
+  #   displayName: 'azdev test rdbms'
