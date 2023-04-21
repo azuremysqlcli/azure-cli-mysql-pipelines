@@ -41,6 +41,5 @@ jobs:
   - bash: |
       set -ev
       . env/bin/activate
-      azdev test --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
-
+      azdev test --live --no-exitfirst test_rdbms_flexible_commands --mark mysql_regression
     displayName: 'azdev test rdbms'
