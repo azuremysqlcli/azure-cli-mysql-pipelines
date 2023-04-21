@@ -4,8 +4,8 @@ resources:
 trigger: none
 
 jobs:
-- job: MySQL Regression
-  displayName: MySQL Regression
+- job: MySQLRegression
+  displayName: MySQLRegression
 
   pool:
     vmImage: 'ubuntu-latest'
