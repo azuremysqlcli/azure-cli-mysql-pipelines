@@ -6,6 +6,7 @@ trigger: none
 jobs:
 - job: MySQLRegression
   displayName: MySQLRegression
+  timeoutInMinutes: 600
 
   pool:
     vmImage: 'ubuntu-latest'
