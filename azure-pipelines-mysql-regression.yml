@@ -24,6 +24,8 @@ jobs:
   - bash: |
       az login --service-principal -u $(APPID) -p $(azure-cli-rdbms-regression-secret) --tenant $(TENANTID)
       az account set -s $(SUBSCRIPTIONID)
+      az cloud update --endpoint-resource-manager "https://eastus2euap.management.azure.com/"
+      az provider register -n Microsoft.DBforMySQL
     displayName: 'az login'
   - bash: |
       git clone https://github.com/Azure/azure-cli.git
